@@ -20,7 +20,7 @@
 */
 function updateViewportDimensions() {
 	var w=window,d=document,e=d.documentElement,g=d.getElementsByTagName('body')[0],x=w.innerWidth||e.clientWidth||g.clientWidth,y=w.innerHeight||e.clientHeight||g.clientHeight;
-	return { width:x,height:y }
+	return { width:x,height:y };
 }
 // setting the viewport width
 var viewport = updateViewportDimensions();
@@ -66,6 +66,9 @@ var timeToWaitForLast = 100;
  *    // if we're on the home page, we wait the set amount (in function above) then fire the function
  *    if( is_home ) { waitForFinalEvent( function() {
  *
+ *	// update the viewport, in case the window size has changed
+ *	viewport = updateViewportDimensions();
+ *
  *      // if we're above or equal to 768 fire this off
  *      if( viewport.width >= 768 ) {
  *        console.log('On home page and window sized to 768 width or more.');
@@ -91,13 +94,13 @@ var timeToWaitForLast = 100;
  * then we can swap out those images since they are located in a data attribute.
 */
 function loadGravatars() {
-  // set the viewport using the function above
-  viewport = updateViewportDimensions();
-  // if the viewport is tablet or larger, we load in the gravatars
-  if (viewport.width >= 768) {
-  jQuery('.comment img[data-gravatar]').each(function(){
-    jQuery(this).attr('src',jQuery(this).attr('data-gravatar'));
-  });
+	// set the viewport using the function above
+	viewport = updateViewportDimensions();
+	// if the viewport is tablet or larger, we load in the gravatars
+	if (viewport.width >= 768) {
+	jQuery('.comment img[data-gravatar]').each(function(){
+		jQuery(this).attr('src',jQuery(this).attr('data-gravatar'));
+	});
 	}
 } // end function
 
@@ -107,11 +110,18 @@ function loadGravatars() {
 */
 jQuery(document).ready(function($) {
 
-  /*
-   * Let's fire off the gravatar function
-   * You can remove this if you don't need it
-  */
-  loadGravatars();
-
+	/*
+	 * Let's fire off the gravatar function
+	 * You can remove this if you don't need it
+	*/
+	loadGravatars();
+	
+	/* 
+	 * This loads the navigation toggle for mobile
+	 */
+	$("#menu-toggle").on("click", function(){
+		$("#nav-menu").slideToggle();
+		$(this).toggleClass("active");
+	});
 
 }); /* end of as page load scripts */

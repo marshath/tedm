@@ -5,80 +5,65 @@
 <!--[if (IE 8)&!(IEMobile)]><html <?php language_attributes(); ?> class="no-js lt-ie9"><![endif]-->
 <!--[if gt IE 8]><!--> <html <?php language_attributes(); ?> class="no-js"><!--<![endif]-->
 
-<head>
-	<meta charset="utf-8">
+	<head>
+		<meta charset="utf-8">
 
-	<?php // Google Chrome Frame for IE ?>
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<?php // force Internet Explorer to use the latest rendering engine available ?>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-	<title><?php wp_title(''); ?></title>
+		<title><?php wp_title(''); ?></title>
 
-	<?php // mobile metadata ?>
-	<meta name="HandheldFriendly" content="True">
-	<meta name="MobileOptimized" content="320">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<?php // mobile meta (hooray!) ?>
+		<meta name="HandheldFriendly" content="True">
+		<meta name="MobileOptimized" content="320">
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-	<?php // icons & favicons ?>
-	<link rel="apple-touch-icon" href="<?php echo get_template_directory_uri(); ?>/library/images/apple-icon-touch.png">
-	<link rel="icon" href="<?php echo get_template_directory_uri(); ?>/favicon.ico">
-	<!--[if IE]>
-		<link rel="shortcut icon" href="<?php echo get_template_directory_uri(); ?>/favicon.ico">
-	<![endif]-->
-	<?php // or, set /favicon.ico for IE10 win ?>
-	<meta name="msapplication-TileColor" content="#ffffff">
-	<meta name="msapplication-TileImage" content="<?php echo get_template_directory_uri(); ?>/library/images/win8-tile-icon.png">
-	
-	<?php // site styles ?>
-	<link rel="stylesheet" href="<?php bloginfo('template_url'); ?>/style.css">	
-	<?php // Loads IE Styles and HTML5 JavaScript file to add support for HTML5 elements in older IE versions. ?>
-	<!--[if lt IE 9]>
-		    <link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/style-ie.css" type="text/css" media="screen" />
-			<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
-	<![endif]-->
+		<?php // icons & favicons ?>
+		<?php get_template_part('inc/header-icons'); ?>
 
-	<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
+		<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
 
-	<?php get_template_part('header-social'); ?>
-	<?php get_template_part('header-plugins'); ?>
-	
-	<?php // wordpress head functions ?>
-	<?php wp_head(); ?>
-	<?php // end of wordpress head ?>
+		<?php // wordpress head functions ?>
+		<?php wp_head(); ?>
+		<?php // end of wordpress head ?>
 
-</head>
+		<?php // header includes ?>
+		<?php get_template_part('inc/header-social'); // includes social media profiles ?>
+		<?php get_template_part('inc/header-plugins'); // includes plugins and analytics ?>
 
-<body <?php body_class(); ?>>
+	</head>
 
-	<?php // Insert Google Tag Manager Here ?>
-	<?php // end tag manager ?>
-	
-	<div id="container" class="page-wrap">
+	<body <?php body_class(); ?> itemscope itemtype="http://schema.org/WebPage">
 
-		<header class="header" role="banner">
+		<div id="container">
 
-			<div id="inner-header" class="row">
+			<header class="header" role="banner" itemscope itemtype="http://schema.org/WPHeader">
 
-				<?php // to use a image just replace the bloginfo('name') with your img src and remove the surrounding <p> ?>
-				<p id="logo"><a href="<?php echo home_url(); ?>" rel="nofollow"><img src="<?php echo get_template_directory_uri(); ?>/library/images/logo.png" class="logo" alt="Logo Alt Text" /></a></p>
+				<div id="inner-header" class="wrap cf">
 
-				<?php // Need to look at replacing with the customizable navigation ?>
-				<nav role="navigation">
-					<?php wp_nav_menu(array(
-					'container' => false,                           // remove nav container
-					'container_class' => 'menu cf',                 // class of container (should you choose to use it)
-					'menu' => __( 'The Main Menu', 'bonestheme' ),  // nav name
-					'menu_class' => 'nav top-nav cf',               // adding custom nav class
-					'theme_location' => 'main-nav',                 // where it's located in the theme
-					'before' => '',                                 // before the menu
-    				'after' => '',                                  // after the menu
-    				'link_before' => '',                            // before each link
-    				'link_after' => '',                             // after each link
-    				'depth' => 0,                                   // limit the depth of the nav
-					'fallback_cb' => ''                             // fallback function (if there is one)
-					)); ?>
-					
-				</nav>
+					<?php // to use a image just replace the bloginfo('name') with your img src and remove the surrounding <p> ?>
+					<p id="logo" class="h1" itemscope itemtype="http://schema.org/Organization"><a href="<?php echo home_url(); ?>" rel="nofollow"><?php bloginfo('name'); ?></a></p>
 
-			</div>
+					<?php // if you'd like to use the site description you can un-comment it below ?>
+					<?php // bloginfo('description'); ?>
 
-		</header>
+					<nav role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
+						<?php wp_nav_menu(array(
+							'container' => false,                           // remove nav container
+							'container_class' => 'menu cf',                 // class of container (should you choose to use it)
+							'menu' => __( 'The Main Menu', 'bonestheme' ),  // nav name
+							'menu_class' => 'nav top-nav cf',               // adding custom nav class
+							'theme_location' => 'main-nav',                 // where it's located in the theme
+							'before' => '',                                 // before the menu
+							'after' => '',                                  // after the menu
+							'link_before' => '',                            // before each link
+							'link_after' => '',                             // after each link
+							'depth' => 0,                                   // limit the depth of the nav
+							'fallback_cb' => ''                             // fallback function (if there is one)
+						)); ?>
+
+					</nav>
+
+				</div>
+
+			</header>

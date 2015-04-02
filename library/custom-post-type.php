@@ -5,6 +5,13 @@ a custom post type and taxonomies. You
 can edit this one or copy the following code 
 to create another one. 
 
+I put this in a separate file so as to 
+keep it organized. I find it easier to edit
+and change things if they are concentrated
+in their own file.
+
+Developed by: Eddie Machado
+URL: http://themble.com/bones/
 */
 
 // Flush rewrite rules for custom post types
@@ -53,9 +60,9 @@ function custom_post_example() {
 	); /* end of register post type */
 	
 	/* this adds your post categories to your custom post type */
-	// register_taxonomy_for_object_type( 'category', 'custom_type' );
+	register_taxonomy_for_object_type( 'category', 'custom_type' );
 	/* this adds your post tags to your custom post type */
-	// register_taxonomy_for_object_type( 'post_tag', 'custom_type' );
+	register_taxonomy_for_object_type( 'post_tag', 'custom_type' );
 	
 }
 
@@ -117,6 +124,5 @@ function custom_post_example() {
 		check out this fantastic tool:
 		https://github.com/jaredatch/Custom-Metaboxes-and-Fields-for-WordPress
 	*/
-	
 
 ?>
